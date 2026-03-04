@@ -4,7 +4,7 @@
 <title>My E-commerce Store</title>
 
 <!-- Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-6W4XVG15VX"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YQRG46WMCN"></script>
 <script>
 window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
@@ -67,6 +67,14 @@ button:hover{
 background:#218838;
 }
 
+.buy{
+background:#007bff;
+}
+
+.buy:hover{
+background:#0056b3;
+}
+
 </style>
 </head>
 
@@ -78,6 +86,7 @@ background:#218838;
 <div class="cart">
 Cart: <span id="cart-count">0</span>
 <button onclick="viewCart()">View Cart</button>
+<button class="buy" onclick="buyNow()">Buy Now</button>
 </div>
 
 </header>
@@ -138,6 +147,24 @@ alert("Products in cart: " + cart.join(", "));
 }
 
 gtag('event','view_cart',{
+event_category:'ecommerce'
+});
+
+}
+
+function buyNow(){
+
+if(cart.length === 0){
+alert("Your cart is empty!");
+}
+else{
+alert("Purchase successful! Items bought: " + cart.join(", "));
+cart = [];
+count = 0;
+document.getElementById("cart-count").innerText = 0;
+}
+
+gtag('event','purchase',{
 event_category:'ecommerce'
 });
 
